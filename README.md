@@ -6,7 +6,7 @@ Persual is a productivy app where users add books to their library, track their 
 - Login/Signup Page
 - Book Search Page
 - Library Page
-- Read Page
+- Reading Time Page
 - Calendar/Reading Tracker Page
 - User Profile Page
 ### User is able to
