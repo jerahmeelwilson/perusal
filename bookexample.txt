@@ -1,0 +1,115 @@
+{
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+        {
+            "kind": "books#volume",
+            "id": "m3GzoAEACAAJ",
+            "etag": "NKlLRoh+Apc",
+            "selfLink": "https://www.googleapis.com/books/v1/volumes/m3GzoAEACAAJ",
+            "volumeInfo": {
+                "title": "The Catcher in the Rye",
+                "authors": [
+                    "J.D. Salinger"
+                ],
+                "publisher": "Little, Brown",
+                "publishedDate": "1951-07-16",
+                "description": "Anyone who has read J. D. Salinger's New Yorker stories - particularly A Perfect Day for Bananafish, Uncle Wiggily in Connecticut, The Laughing Man, and For Esme - With Love and Squalor, will not be surprised by the fact that his first novel is full of children. The hero-narrator of The Catcher in the Rye is an ancient child of sixteen, a native New Yorker named Holden Caulfield. Through circumstances that tend to preclude adult, secondhand description, he leaves his prep school in Pennsylvania and goes underground in New York City for three days. The boy himself is at once too simple and too complex for us to make any final comment about him or his story. Perhaps the safest thing we can say about Holden is that he was born in the world not just strongly attracted to beauty but, almost, hopelessly impaled on it. There are many voices in this novel: children's voices, adult voices, underground voices-but Holden's voice is the most eloquent of all. Transcending his own vernacular, yet remaining marvelously faithful to it, he issues a perfectly articulated cry of mixed pain and pleasure. However, like most lovers and clowns and poets of the higher orders, he keeps most of the pain to, and for, himself. The pleasure he gives away, or sets aside, with all his heart. It is there for the reader who can handle it to keep.",
+                "industryIdentifiers": [
+                    {
+                        "type": "ISBN_10",
+                        "identifier": "0316769533"
+                    },
+                    {
+                        "type": "ISBN_13",
+                        "identifier": "9780316769532"
+                    }
+                ],
+                "readingModes": {
+                    "text": false,
+                    "image": false
+                },
+                "pageCount": 288,
+                "printType": "BOOK",
+                "categories": [
+                    "Fiction"
+                ],
+                "averageRating": 3.5,
+                "ratingsCount": 3169,
+                "maturityRating": "NOT_MATURE",
+                "allowAnonLogging": false,
+                "contentVersion": "preview-1.0.0",
+                "imageLinks": {
+                    "smallThumbnail": "http://books.google.com/books/content?id=m3GzoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+                    "thumbnail": "http://books.google.com/books/content?id=m3GzoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+                },
+                "language": "en",
+                "previewLink": "http://books.google.com/books?id=m3GzoAEACAAJ&dq=intitle:catcher+in+the+rye+salinger+isbn:9780316769532&hl=&cd=1&source=gbs_api",
+                "infoLink": "http://books.google.com/books?id=m3GzoAEACAAJ&dq=intitle:catcher+in+the+rye+salinger+isbn:9780316769532&hl=&source=gbs_api",
+                "canonicalVolumeLink": "https://books.google.com/books/about/The_Catcher_in_the_Rye.html?hl=&id=m3GzoAEACAAJ"
+            },
+            "saleInfo": {
+                "country": "US",
+                "saleability": "NOT_FOR_SALE",
+                "isEbook": false
+            },
+            "accessInfo": {
+                "country": "US",
+                "viewability": "NO_PAGES",
+                "embeddable": false,
+                "publicDomain": false,
+                "textToSpeechPermission": "ALLOWED",
+                "epub": {
+                    "isAvailable": false
+                },
+                "pdf": {
+                    "isAvailable": false
+                },
+                "webReaderLink": "http://play.google.com/books/reader?id=m3GzoAEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+                "accessViewStatus": "NONE",
+                "quoteSharingAllowed": false
+            },
+            "searchInfo": {
+                "textSnippet": "There are many voices in this novel: children&#39;s voices, adult voices, underground voices--but Holden&#39;s voice is the most eloquent of all."
+            }
+        }
+    ]
+}
+
+
+book{
+    id
+    volumeInfo.title
+    volumeInfo.subtitle
+    volumeInfo.authors
+    volumeInfo.publisher
+    volumeInfo.publishedDate
+    volumeInfo.description
+    volumeInfo.dpageCount
+    volumeInfo.industryIdentifiers[1].identifier
+    volumbeInfo.imageLinks.thumbnail
+    volumbeInfo.previewLink
+}
+
+user{
+    id
+    username
+    password
+}
+
+user_books{
+    user_id
+    book_id
+}
+
+readingTime{
+    reading_id
+    readingTime
+    date
+    book_id 
+}
+
+user_reading{
+    reading_id
+    user_id 
+}
