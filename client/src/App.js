@@ -4,10 +4,9 @@ import Register from "./components/Landing/Register";
 import { Route, Routes, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
-
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import LandingPage from "./components/Landing/LandingPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,17 +30,36 @@ function App() {
 
   return (
     <div className="App">
-      <NavLink to="*">Home</NavLink>
-      <NavLink to="/register">Register</NavLink>
-      <ToastContainer />
+      <nav>
+        <h2>Persual</h2>
+        <div className="navLinks">
+          <ul>
+            <li>
+              <NavLink exact activeClassName="active" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact activeClassName="active" to="/register">
+                Signup
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact activeClassName="active" to="/login">
+                Login
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <Routes>
         <Route
-          path="*"
+          path="/"
           element={
             isLoggedIn ? (
               <Dashboard setLogin={setIsLoggedIn} />
             ) : (
-              <Login setLogin={setIsLoggedIn} />
+              <LandingPage />
             )
           }
         />
@@ -49,6 +67,7 @@ function App() {
           path="/register"
           element={<Register setLogin={setIsLoggedIn} />}
         />
+        <Route path="/login" element={<Login setLogin={setIsLoggedIn} />} />
       </Routes>
     </div>
   );
