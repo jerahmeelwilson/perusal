@@ -19,7 +19,7 @@ router.post("/register", validInfo, async (req, res) => {
     //3. Bcrypt the user password
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
-
+    
     //4. Enter the new user inside our database
     await sequelize.query(
       `INSERT INTO users (user_name, user_password) 

@@ -23,13 +23,11 @@ const seed = (req, res) => {
   sequelize
     .query(
       `
-        drop table if exists users;
-        
-        create table users(
-            user_id serial primary key,
-            user_name varchar(255) not null,
-            user_password varchar(255) not null
-        );
+      create table user_books(
+        user_book_id serial primary key,
+        user_id integer references users (user_id),
+        book_id varchar references books (book_id)
+      )
     `
     )
     .then(() => {
