@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import BookSearch from "./booksearch/BookSearch";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import "./Dashboard.css";
+import SearchIcon from '@mui/icons-material/Search';
+import BookIcon from '@mui/icons-material/Book';
 
-export default function Dashboard({setLogin}) {
+export default function Dashboard({ setLogin }) {
   const [username, setUsername] = useState("");
-
+  const navigate = useNavigate();
   const getUsername = () => {
     axios
       .get("http://localhost:4001/dashboard", {
@@ -20,20 +23,33 @@ export default function Dashboard({setLogin}) {
 
   useEffect(() => {
     getUsername();
-  },[]);
+    navigate("/books");
+  }, []);
 
-  const logout = (e)=> {
+  const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setLogin(false);
-  }
-
+  };
   return (
     <div>
-      <h1>Dashboard {username}</h1>
-
-      <BookSearch />
-      <button onClick={logout}>Logout</button>
+      <div className="titleBar">
+        <h3>Welcome, {username}</h3>
+        <button onClick={logout}>Logout</button>
+      </div>
+      <div className="dashboard">
+        <nav className="sidebar">
+          <ul>
+            <li>
+              <NavLink to="books">{<BookIcon/>}</NavLink>
+            </li>
+            <li>
+              <NavLink to="search">{<SearchIcon />}</NavLink>
+            </li>
+          </ul>
+        </nav>
+        <Outlet />
+      </div>
     </div>
   );
 }

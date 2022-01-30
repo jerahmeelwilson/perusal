@@ -7,6 +7,8 @@ import Dashboard from "./components/dashboard/Dashboard";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import LandingPage from "./components/Landing/LandingPage";
+import BookSearch from "./components/dashboard/booksearch/BookSearch";
+import BookShelf from "./components/dashboard/bookshelf/Bookshelf";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,17 +37,17 @@ function App() {
         <div className="navLinks">
           <ul>
             <li>
-              <NavLink exact activeClassName="active" to="/">
+              <NavLink activeclassname="active" to="/">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink exact activeClassName="active" to="/register">
+              <NavLink activeclassname="active" to="/register">
                 Signup
               </NavLink>
             </li>
             <li>
-              <NavLink exact activeClassName="active" to="/login">
+              <NavLink  activeclassname="active" to="/login">
                 Login
               </NavLink>
             </li>
@@ -62,7 +64,10 @@ function App() {
               <LandingPage />
             )
           }
-        />
+        >
+        <Route path="/books" element={<BookShelf />}/>
+        <Route path="/search" element={<BookSearch />}/>
+        </Route>
         <Route
           path="/register"
           element={<Register setLogin={setIsLoggedIn} />}

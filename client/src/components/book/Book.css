@@ -1,0 +1,16 @@
+.bookCard{
+    display: flex;
+    color: #FFF6BF;
+}
+
+.description{
+    display: -webkit-box;
+    -webkit-line-clamp: 18;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;   
+    font-size: smaller;
+    padding-left: 20px; 
+}
+
+

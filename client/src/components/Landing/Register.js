@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import "./Register.css";
+
+
 function Register({setLogin}) {
   const navigate = useNavigate();
   const initialValues = {
@@ -51,9 +54,9 @@ function Register({setLogin}) {
   });
 
   return (
-    <div>
+    <div className="registerPage">
       <h2>Register</h2>
-      <form onSubmit={formik.handleSubmit}>
+      <form  autoComplete="off" onSubmit={formik.handleSubmit}>
         <input
           type="text"
           name="username"
@@ -80,10 +83,10 @@ function Register({setLogin}) {
         </button>
       </form>
       <div>
-        {formik.errors.username ? <div>{formik.errors.username}</div> : null}
-        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+        {formik.errors.username ? <div className='validationError' >{formik.errors.username}</div> : null}
+        {formik.errors.password ? <div className='validationError' >{formik.errors.password}</div> : null}
         {formik.errors.confirmPassword ? (
-          <div>{formik.errors.confirmPassword}</div>
+          <div className='validationError' >{formik.errors.confirmPassword}</div>
         ) : null}
       </div>
     </div>

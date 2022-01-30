@@ -1,0 +1,47 @@
+form {
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 0.5em;
+  background-color: #03323c;
+  border: none;
+  border-bottom: solid 1px #16babb;
+  border-radius: 2px;
+}
+
+input:focus {
+  outline: 1px solid #ffc457;
+}
+
+input::placeholder {
+  color: #fff6bf;
+}
+
+button {
+  width: 10vw;
+}
+
+.validationError {
+  margin: 15px 0;
+  color: #f05d2a;
+}
+
+@media (max-width: 760px) {
+    .loginPage{
+        text-align: center;
+    }
+    form{
+        display: block;
+        margin: 0 auto;
+    }
+    button{
+        width:auto;
+    }
+    input{
+        margin-bottom: 1em;
+    }
+}
+

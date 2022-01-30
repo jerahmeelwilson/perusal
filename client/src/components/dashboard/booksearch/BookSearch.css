@@ -1,0 +1,9 @@
+.booksearch{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.isbnInput{
+    width: 20vw;
+}

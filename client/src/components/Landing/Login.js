@@ -1,12 +1,13 @@
 import React from 'react';
 import {useFormik} from 'formik'
 import axios from 'axios';
-
-
-import { ToastContainer, toast } from 'react-toastify';
+import './Login.css'
+import { useNavigate } from 'react-router-dom'
+import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login({setLogin}) {
+  const navigate = useNavigate();
   const initialValues = {
     username: "",
     password: ""
@@ -18,6 +19,7 @@ function Login({setLogin}) {
         localStorage.setItem("token", res.data.token);
         setLogin(true);
         toast.success("Login Successfull");
+        navigate('/'); 
       } else{
         toast.error(res.data);
       }
@@ -37,6 +39,7 @@ function Login({setLogin}) {
     } else if(values.password.length < 8) {
       errors.password = "Password must be longer than 8 Characters."
     }
+    return errors;
   }
   const formik = useFormik({
     initialValues,
@@ -45,9 +48,9 @@ function Login({setLogin}) {
   })
 
 
-  return <div>
-    <h2>Login Page</h2>
-    <form onSubmit={formik.handleSubmit}>
+  return <div className='loginPage'>
+    <h2>Login</h2>
+    <form autoComplete="off" onSubmit={formik.handleSubmit}>
       <input
         type="text"
         name="username"
@@ -64,6 +67,8 @@ function Login({setLogin}) {
          />
          <button type='submit' disabled={!formik.isValid}>Submit</button>
     </form>
+    {formik.errors.username ? <div className='validationError' >{formik.errors.username}</div> : null}
+    {formik.errors.password ? <div className='validationError' >{formik.errors.password}</div> : null}
   </div>;
 }
 

@@ -1,0 +1,15 @@
+@media (max-width: 760px) {
+    .registerPage{
+        text-align: center;
+    }
+    form{
+        display: block;
+        margin: 0 auto;
+    }
+    button{
+        width:auto;
+    }
+    input{
+        margin-bottom: 1em;
+    }
+}
