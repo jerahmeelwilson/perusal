@@ -23,11 +23,28 @@ const seed = (req, res) => {
   sequelize
     .query(
       `
-      create table user_books(
-        user_book_id serial primary key,
-        user_id integer references users (user_id),
-        book_id varchar references books (book_id)
-      )
+      create table users(
+        user_id serial primary key,
+        user_name varchar(255) not null,
+        user_password varchar(255) not null
+    );
+
+    create table books(
+        book_id varchar primary key,
+        title varchar,
+        subtitle varchar,
+        author varchar,
+        page_count integer,
+        ISBN13 varchar,
+        thumbnail varchar
+    );
+
+    create table user_books(
+      user_books_id serial primary key,
+      user_id integer references users (user_id),
+      book_id varchar references books (book_id)
+
+    )
     `
     )
     .then(() => {

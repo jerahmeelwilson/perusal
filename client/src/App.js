@@ -5,6 +5,7 @@ import { Route, Routes, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer} from 'react-toastify';
 import axios from "axios";
 import LandingPage from "./components/Landing/LandingPage";
 import BookSearch from "./components/dashboard/booksearch/BookSearch";
@@ -54,6 +55,7 @@ function App() {
           </ul>
         </div>
       </nav>
+      <ToastContainer />
       <Routes>
         <Route
           path="/"

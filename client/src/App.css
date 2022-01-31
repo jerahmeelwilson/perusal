@@ -40,6 +40,11 @@ ul li a:hover{
   text-shadow: 3.9px 7.8px 7.8px hsl(0deg 0% 0% / 0.38);
 }
 
+button.Toastify__close-button{
+  font-size: 1em;
+  width: 10%;
+  box-shadow: none;
+}
 
 @media (max-width: 426px) {
   nav, ul{

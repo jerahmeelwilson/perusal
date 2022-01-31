@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import Book from "../../book/Book";
 import "./BookSearch.css";
-
+import {toast } from 'react-toastify';
 export default function BookSearch() {
   const [books, setBooks] = useState([]);
 
@@ -16,6 +16,9 @@ export default function BookSearch() {
       .get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${values.isbn}`)
       .then((res) => {
         setBooks(res.data.items);
+        if(!res.data.items){
+          toast.error("ISBN does not exist");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -57,16 +60,16 @@ export default function BookSearch() {
       <div>
         {books
           ? books.map((book, index) => {
+             
               let bookProps = {
+                book_id: book.id,
                 title: book.volumeInfo.title,
                 subtitle: book.volumeInfo.subtitle,
                 authors: book.volumeInfo.authors,
-                publisher: book.volumeInfo.publisher,
-                publishedDate: book.volumeInfo.publishedDate,
                 description: book.volumeInfo.description,
-                pageCount: book.volumeInfo.pageCount,
-                isbn: book.volumeInfo.industryIdentifiers[0].identifier,
-                thumbnail: book.volumeInfo.imageLinks.thumbnail,
+                page_count: book.volumeInfo.pageCount,
+                isbn13: book.volumeInfo.industryIdentifiers[0].identifier,
+                thumbnail: book.volumeInfo.hasOwnProperty('imageLinks') ? book.volumeInfo.imageLinks.thumbnail : null,
                 from: "booksearch"
               };
               return <Book key={book.id} book={bookProps} />;

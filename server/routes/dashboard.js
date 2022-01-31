@@ -20,12 +20,15 @@ router.post("/addBook", authorization, async (req,res) => {
         user: req.user,
         body: req.body
     }
-
+    console.log(request);
+ 
     try{
     //1. Add book to book table
     const book = await sequelize.query(
         `SELECT * FROM books WHERE book_id = '${request.body.book_id}'`
     );
+
+
     if(book[1].rowCount === 0){
         await sequelize.query(
             `INSERT INTO books (book_id, title, subtitle, author, page_count, isbn13, thumbnail) 
@@ -33,7 +36,7 @@ router.post("/addBook", authorization, async (req,res) => {
                 '${request.body.book_id}',
                 '${request.body.title}',
                 '${request.body.subtitle}',
-                '${request.body.author}',
+                '${request.body.authors}',
                 '${request.body.page_count}',
                 '${request.body.isbn13}',
                 '${request.body.thumbnail}'

@@ -10,7 +10,7 @@ export default function Dashboard({ setLogin }) {
   const navigate = useNavigate();
   const getUsername = () => {
     axios
-      .get("http://localhost:4001/dashboard", {
+      .post("http://localhost:4001/dashboard", {
         headers: { token: localStorage.token },
       })
       .then((res) => {
