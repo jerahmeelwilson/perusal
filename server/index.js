@@ -14,7 +14,6 @@ app.use(cors());
 
 app.use("/auth", require("./routes/jwtAuth"));
 
-
 //Dashboard route
 
 app.use("/dashboard", require("./routes/dashboard"));
@@ -23,28 +22,11 @@ const seed = (req, res) => {
   sequelize
     .query(
       `
-      create table users(
-        user_id serial primary key,
-        user_name varchar(255) not null,
-        user_password varchar(255) not null
-    );
-
-    create table books(
-        book_id varchar primary key,
-        title varchar,
-        subtitle varchar,
-        author varchar,
-        page_count integer,
-        ISBN13 varchar,
-        thumbnail varchar
-    );
-
-    create table user_books(
-      user_books_id serial primary key,
-      user_id integer references users (user_id),
-      book_id varchar references books (book_id)
-
-    )
+      create table user_reading_times(
+        user_reading_times_id serial primary key,
+        user_id integer references users (user_id),
+        reading_time_id integer references reading_times (reading_time_id)
+      );
     `
     )
     .then(() => {
@@ -56,4 +38,6 @@ const seed = (req, res) => {
 
 app.post("/seed", seed);
 
-app.listen(SERVER_PORT, () => console.log(`Server is running on port ${SERVER_PORT}`));
+app.listen(SERVER_PORT, () =>
+  console.log(`Server is running on port ${SERVER_PORT}`)
+);

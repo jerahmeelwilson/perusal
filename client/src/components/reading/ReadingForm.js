@@ -35,6 +35,7 @@ export default function ReadingForm() {
     return () => clearInterval(interval);
   }, [timerOn]);
 
+  console.log(userBooks);
   return (
     <div className="Timers">
       <h2>Stopwatch</h2>

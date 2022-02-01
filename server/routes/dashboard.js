@@ -67,20 +67,62 @@ router.post("/addBook", authorization, async (req, res) => {
 });
 
 router.get("/getBooks", authorization, async (req, res) => {
-    try {
-      //req.user has the payload
-      const user_books = await sequelize.query(
-        `SELECT books.book_id, title, subtitle, author, page_count, isbn13, thumbnail 
+  try {
+    //req.user has the payload
+    const user_books = await sequelize.query(
+      `SELECT books.book_id, title, subtitle, author, page_count, isbn13, thumbnail 
         FROM books
         JOIN user_books ON books.book_id = user_books.book_id
         WHERE user_books.user_id = ${req.user};`
-      ); 
-      res.json(user_books[0]);
+    );
+    res.json(user_books[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Server Error");
+  }
+});
 
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json("Server Error");
+router.post("/addReading", authorization, async (req, res) => {
+  let request = {
+    user: req.user,
+    body: req.body,
+  };
+
+  try {
+    //1. check if current page is greater than or equal to book page count
+    const book = await sequelize.query(
+      `SELECT page_count FROM books WHERE book_id = '${request.body.book_id}'`
+    );
+    if (
+      request.body.current_page > book[0][0].page_count ||
+      request.body.current_page < 0
+    ) {
+      res.status(401).send("Invalid page number");
+    } else {
+      const addTime = await sequelize.query(`
+          INSERT INTO reading_times (reading_time, date, current_page, book_id) 
+            VALUES (
+                ${request.body.reading_time},
+                '${request.body.date}',
+                ${request.body.current_page},
+                '${request.body.book_id}'
+            )
+            RETURNING reading_time_id;
+          `);
+      await sequelize.query(`
+         INSERT INTO user_reading_times(reading_time_id, user_id)
+            VALUES (
+                '${addTime[0][0].reading_time_id}',
+                '${request.user}'
+        );
+         `);
+
+      res.status(200).send(`Reading time added`);
     }
-  });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Server Error");
+  }
+});
 
 module.exports = router;
