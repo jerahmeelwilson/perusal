@@ -1,0 +1,35 @@
+
+.rbc-calendar{
+    width: 110%;
+    color:  #16BABB;
+}
+
+.rbc-btn-group button{
+    font-size: smaller;
+    width: 5em;
+    background-color: #0E7F87
+}
+
+.rbc-toolbar .rbc-active{
+    background-color: #FFC457 !important;
+}
+
+.rbc-toolbar button:hover{
+    background-color: #FFC457 !important;
+}
+
+.rbc-toolbar button:active{
+    background-color: #FFC457 !important;
+}
+
+.rbc-header, .rbc-date-cell{
+    color: #FFF6BF;
+}
+
+.rbc-off-range-bg{
+    background-color: #16BABB
+}
+
+.rbc-today{
+    background-color: #0E7F87
+}

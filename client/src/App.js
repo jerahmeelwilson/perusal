@@ -11,7 +11,7 @@ import LandingPage from "./components/Landing/LandingPage";
 import BookSearch from "./components/dashboard/booksearch/BookSearch";
 import BookShelf from "./components/dashboard/bookshelf/Bookshelf";
 import ReadingForm from "./components/reading/ReadingForm"
-import Calendar from "./components/calendar/Calendar";
+import Calendar from "./components/calendar/ReadingCalendar";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
