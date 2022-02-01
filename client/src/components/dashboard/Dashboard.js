@@ -4,13 +4,15 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import SearchIcon from '@mui/icons-material/Search';
 import BookIcon from '@mui/icons-material/Book';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import TodayIcon from '@mui/icons-material/Today';
 
 export default function Dashboard({ setLogin }) {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const getUsername = () => {
     axios
-      .post("http://localhost:4001/dashboard", {
+      .get("http://localhost:4001/dashboard", {
         headers: { token: localStorage.token },
       })
       .then((res) => {
@@ -45,6 +47,12 @@ export default function Dashboard({ setLogin }) {
             </li>
             <li>
               <NavLink to="search">{<SearchIcon />}</NavLink>
+            </li>
+            <li>
+              <NavLink to="read">{<AutoStoriesIcon />}</NavLink>
+            </li>
+            <li>
+              <NavLink to="calendar">{<TodayIcon />}</NavLink>
             </li>
           </ul>
         </nav>

@@ -39,7 +39,7 @@ export default function BookSearch() {
   return (
     <div className="booksearch">
       <div>
-        <h2>BookSearch</h2>
+        <h2>Book Search</h2>
         <form onSubmit={formik.handleSubmit}>
           <input
             className="isbnInput"
@@ -60,7 +60,6 @@ export default function BookSearch() {
       <div>
         {books
           ? books.map((book, index) => {
-             
               let bookProps = {
                 book_id: book.id,
                 title: book.volumeInfo.title,
@@ -72,6 +71,8 @@ export default function BookSearch() {
                 thumbnail: book.volumeInfo.hasOwnProperty('imageLinks') ? book.volumeInfo.imageLinks.thumbnail : null,
                 from: "booksearch"
               };
+              let authorString = book.volumeInfo.authors.join("");
+              bookProps = {...bookProps, authors: authorString};
               return <Book key={book.id} book={bookProps} />;
             })
           : null}
