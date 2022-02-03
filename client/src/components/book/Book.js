@@ -28,8 +28,8 @@ export default function Book({ book }) {
   return (
     <div className="bookCard">
       <div>
-        <h4>{book.title} {book.subtitle}</h4>
-        {book.thumbnail ? <img src={book.thumbnail} alt={book.title} /> : <BookIcon className='bookPlaceHolder'/>}
+        <h4>{book.title} {(book.subtitle !== null || book.subtitle !== "null") ? null : book.subtitle}</h4>
+        {book.thumbnail && book.thumbnail !== "null" ? <img src={book.thumbnail} alt={book.title} /> : <BookIcon className='bookPlaceHolder'/>}
         <h4>By: {book.authors}</h4>
       </div>
       {book.from !== 'bookshelf' ? <div className="leftSide">

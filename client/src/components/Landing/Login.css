@@ -4,7 +4,7 @@ form {
   flex-direction: column;
 }
 
-input {
+input , select{
   margin-bottom: 0.5em;
   background-color: #03323c;
   border: none;
@@ -12,11 +12,11 @@ input {
   border-radius: 2px;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: 1px solid #ffc457;
 }
 
-input::placeholder {
+input::placeholder{
   color: #fff6bf;
 }
 

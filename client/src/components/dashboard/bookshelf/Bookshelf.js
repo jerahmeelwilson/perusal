@@ -27,7 +27,7 @@ export default function Bookshelf() {
     <div>
       <h2>Books</h2>
       <div>
-        <Grid container spacing={5}>
+        <Grid container spacing={6}>
           {userBooks
             ? userBooks.map((book) => {
                 let bookProps = {
