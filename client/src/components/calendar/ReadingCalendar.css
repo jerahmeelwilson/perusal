@@ -1,7 +1,7 @@
 
 .rbc-calendar{
-    width: 110%;
     color:  #16BABB;
+    width: 100% !important;
 }
 
 .rbc-btn-group button{

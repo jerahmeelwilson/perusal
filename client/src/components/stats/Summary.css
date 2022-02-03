@@ -1,0 +1,9 @@
+.bookmarks{
+    display: flex;
+    justify-content: space-between;
+    width: 150%;
+}
+
+.summary{
+    color: #16BABB
+}

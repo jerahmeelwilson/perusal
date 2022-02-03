@@ -21,6 +21,11 @@ router.post("/addBook", authorization, async (req, res) => {
     user: req.user,
     body: req.body,
   };
+  request.body.title = request.body.title.replace(/'/g,"''");
+  if(request.body.subtitle){
+    request.body.subtitle = request.body.subtitle.replace(/'/g,"''");
+  }
+  request.body.authors = request.body.authors.replace(/'/g,"''");
   console.log(request);
 
   try {
@@ -124,5 +129,56 @@ router.post("/addReading", authorization, async (req, res) => {
     res.status(500).json("Server Error");
   }
 });
+
+router.get("/getReadings", authorization, async (req, res) => {
+  try {
+    //req.user has the payload
+    const user_readings = await sequelize.query(
+      `SELECT reading_time, reading_times.date, book_id, current_page
+      FROM reading_times
+      JOIN user_reading_times ON reading_times.reading_time_id = user_reading_times.reading_time_id
+      WHERE user_reading_times.user_id = ${req.user};`
+    );
+    res.json(user_readings[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Server Error");
+  }
+});
+
+router.get("/getStats", authorization, async (req, res) => {
+  try {
+    //req.user has the payload
+    const user_book_stats = await sequelize.query(
+      `SELECT max(current_page), books.title
+      FROM reading_times
+      JOIN user_reading_times ON reading_times.reading_time_id = user_reading_times.reading_time_id
+      JOIN books on reading_times.book_id = books.book_id
+      WHERE user_reading_times.user_id = ${req.user}
+      GROUP BY books.title;`
+    );
+
+    const user_reading_stats = await sequelize.query(
+      `SELECT sum(reading_time), books.title
+      FROM reading_times
+      JOIN user_reading_times ON reading_times.reading_time_id = user_reading_times.reading_time_id
+      JOIN books on reading_times.book_id = books.book_id
+      WHERE user_reading_times.user_id = ${req.user}
+      GROUP BY books.title;`
+    );
+
+    const stats = {
+      book_stats: user_book_stats[0],
+      reading_stats: user_reading_stats[0]
+    }
+
+    res.status(200).send(stats);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Server Error");
+  }
+});
+
+
 
 module.exports = router;

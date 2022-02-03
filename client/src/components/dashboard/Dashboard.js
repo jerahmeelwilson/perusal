@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import BookIcon from '@mui/icons-material/Book';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import TodayIcon from '@mui/icons-material/Today';
-
+import ListAltIcon from '@mui/icons-material/ListAlt';
 export default function Dashboard({ setLogin }) {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
@@ -53,6 +53,9 @@ export default function Dashboard({ setLogin }) {
             </li>
             <li>
               <NavLink to="calendar">{<TodayIcon />}</NavLink>
+            </li>
+            <li>
+              <NavLink to="summary">{<ListAltIcon />}</NavLink>
             </li>
           </ul>
         </nav>

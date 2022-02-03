@@ -29,6 +29,9 @@ export default function BookSearch() {
     if (!values.isbn) {
       errors.isbn = "ISBN Required";
     }
+    if(values.isbn.includes("-")){
+      errors.isbn = "Please include numbers only"
+    }
     return errors;
   };
   const formik = useFormik({
@@ -53,7 +56,7 @@ export default function BookSearch() {
             Submit
           </button>
           <div>
-            {formik.errors.isbn ? <div>{formik.errors.isbn}</div> : null}
+            {formik.errors.isbn ? <div className="validationError">{formik.errors.isbn}</div> : null}
           </div>
         </form>
       </div>

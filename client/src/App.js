@@ -12,6 +12,7 @@ import BookSearch from "./components/dashboard/booksearch/BookSearch";
 import BookShelf from "./components/dashboard/bookshelf/Bookshelf";
 import ReadingForm from "./components/reading/ReadingForm"
 import Calendar from "./components/calendar/ReadingCalendar";
+import Summary from "./components/stats/Summary";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -73,6 +74,7 @@ function App() {
         <Route path="/search" element={<BookSearch />}/>
         <Route path="/read" element={<ReadingForm />}/>
         <Route path="/calendar" element={<Calendar />}/>
+        <Route path="/summary" element={<Summary />}/>
         </Route>
         <Route
           path="/register"

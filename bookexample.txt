@@ -157,3 +157,28 @@ create table user_reading_times(
     book_id: pTr44Sx6oWQC
     page: 100
 }
+
+
+{
+    title: "Catcher In The Rye, 30 minutes, on page 1/209",
+    start: new Date(),
+    end: new Date(),
+  },
+
+
+  ${
+        (("0" + Math.floor((event.reading_time / 60000) % 60)).slice(-2))}:${("0" + Math.floor((event.reading_time / 1000) % 60)).slice(-2)}
+
+SELECT max(current_page), books.title
+      FROM reading_times
+      JOIN user_reading_times ON reading_times.reading_time_id = user_reading_times.reading_time_id
+      JOIN books on reading_times.book_id = books.book_id
+      WHERE user_reading_times.user_id = 7
+      GROUP BY books.title;
+
+SELECT sum(reading_time), books.title
+      FROM reading_times
+      JOIN user_reading_times ON reading_times.reading_time_id = user_reading_times.reading_time_id
+      JOIN books on reading_times.book_id = books.book_id
+      WHERE user_reading_times.user_id = 7
+      GROUP BY books.title;
